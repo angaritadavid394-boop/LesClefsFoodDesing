@@ -1,0 +1,446 @@
+<!DOCTYPE html>
+<html lang="es-CO">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#1A1A1A">
+  <title>Nosotros — Les Clefs Food Design</title>
+  <meta name="description" content="Historia y filosofía de Les Clefs Food Design. Chef Juan Antonio Gómez, MEYTA Spirits y Roggen Harinas y Especias del Mundo.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../Estilos/style.css">
+  <style>
+    body > main { padding-top: 0; }
+
+    .nosotros-hero {
+      background: var(--carbon);
+      padding: calc(var(--hh) + 80px) 56px 100px;
+      text-align: center;
+      position: relative; overflow: hidden;
+    }
+    .nosotros-hero::before {
+      content: '';
+      position: absolute; inset: 0;
+      background: radial-gradient(ellipse 70% 50% at 50% 0%, rgba(196,154,42,0.12) 0%, transparent 70%);
+      pointer-events: none;
+    }
+    .nosotros-hero .label { color: rgba(196,154,42,0.80); margin-bottom: 24px; }
+    .nosotros-hero h1 {
+      color: var(--crema);
+      font-size: clamp(2.8rem, 5.5vw, 5rem);
+      font-weight: 600; margin-bottom: 8px; line-height: 1.05;
+    }
+    .nosotros-hero h1 em {
+      display: block; font-size: 0.42em; font-weight: 300;
+      font-style: italic; opacity: 0.55; letter-spacing: 1px; margin-top: 12px;
+    }
+    .nosotros-hero-quote {
+      font-family: var(--display); font-style: italic;
+      font-size: clamp(1.05rem, 2vw, 1.40rem);
+      color: rgba(196,154,42,0.85); line-height: 1.75;
+      max-width: 720px; margin: 44px auto 0; display: block;
+    }
+
+    .nosotros-intro {
+      max-width: 780px; margin: 0 auto; text-align: center;
+      padding: 88px 56px 72px;
+    }
+    .nosotros-intro .label { display: flex; justify-content: center; margin-bottom: 28px; }
+    .nosotros-intro p {
+      font-family: var(--display); font-size: clamp(1.05rem, 1.8vw, 1.22rem);
+      font-weight: 400; line-height: 1.95; color: var(--gris-txt); font-style: italic;
+    }
+
+    .chef-nosotros { background: var(--crema-2); padding: 96px 56px; }
+    .chef-nosotros-inner {
+      max-width: 960px; margin: 0 auto;
+      display: grid; grid-template-columns: 1fr 340px;
+      gap: 80px; align-items: start;
+    }
+    .chef-nosotros-bio .label { margin-bottom: 18px; }
+    .chef-nosotros-bio h2 { font-size: clamp(2.2rem, 4vw, 3.4rem); margin-bottom: 10px; line-height: 1.05; }
+    .chef-nosotros-sub {
+      font-family: var(--brilon); font-style: italic;
+      font-size: 1.10rem; color: var(--dorado); display: block; margin-bottom: 36px;
+    }
+    .chef-nosotros-bio p { font-size: 0.97rem; line-height: 1.95; color: var(--gris-txt); margin-bottom: 18px; text-align: justify; hyphens: auto; }
+    .chef-nosotros-bio p:last-of-type { margin-bottom: 0; }
+    .chef-nosotros-bio p:first-of-type::first-letter {
+      font-family: var(--display); font-size: 3.6rem; font-weight: 600;
+      color: var(--dorado); float: left; line-height: 0.82;
+      margin-right: 10px; margin-top: 6px; opacity: 0.7;
+    }
+    .chef-nosotros-stats {
+      display: flex; gap: 44px; margin: 40px 0 36px; padding: 28px 0;
+      background: transparent; border: none;
+    }
+    .chef-nosotros-stats .chef-stat { align-items: flex-start; }
+    .chef-nosotros-foto {
+      border-radius: 2px; overflow: hidden;
+      box-shadow: 0 20px 60px rgba(0,0,0,0.12);
+      position: sticky; top: calc(var(--hh) + 24px);
+    }
+    .chef-nosotros-foto img { width: 100%; height: auto; display: block; object-fit: cover; }
+
+    /* HISTORIA DROPDOWN — full width, no right push */
+    .historia-details {
+      margin-top: 36px;
+      width: 100%;
+      position: relative;
+    }
+    .historia-summary {
+      list-style: none;
+      display: flex; align-items: center;
+      justify-content: flex-start; gap: 20px;
+      padding: 20px 0; cursor: pointer;
+      user-select: none; width: 100%; box-sizing: border-box;
+      transition: color 0.2s;
+    }
+    .historia-summary::-webkit-details-marker { display: none; }
+    .historia-summary-text {
+      font-family: var(--body); font-size: 0.75rem;
+      font-weight: 600; letter-spacing: 2.5px;
+      text-transform: uppercase; color: var(--gris-sua);
+      transition: color 0.2s;
+    }
+    .historia-details[open] .historia-summary-text { color: var(--dorado); }
+    .historia-summary-icon {
+      width: 30px; height: 30px; border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      flex-shrink: 0; transition: transform 0.36s ease;
+    }
+    .historia-summary-icon svg { width: 13px; height: 13px; stroke: var(--gris-sua); transition: stroke 0.2s; }
+    .historia-details[open] .historia-summary-icon { transform: rotate(180deg); }
+    .historia-details[open] .historia-summary-icon svg { stroke: var(--dorado); }
+
+    .historia-expandida {
+      width: 100%;
+      box-sizing: border-box;
+      padding: 32px 0 52px;
+      animation: historiaOpen 0.55s cubic-bezier(0.16,1,0.3,1) both;
+    }
+    @keyframes historiaOpen {
+      from { opacity: 0; transform: translateY(-10px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+    .historia-content-grid { width: 100%; }
+    .historia-texto { width: 100%; }
+    .historia-texto p {
+      font-size: clamp(0.88rem, 1.1vw, 0.97rem);
+      line-height: 2.0; color: var(--gris-txt);
+      margin-bottom: 18px; letter-spacing: 0.01em;
+      text-align: justify; hyphens: auto;
+    }
+    .historia-texto p:last-child { margin-bottom: 0; }
+    .historia-texto p:first-child::first-letter {
+      font-family: var(--display); font-size: 3.8rem;
+      font-weight: 600; color: var(--dorado); float: left;
+      line-height: 0.82; margin-right: 10px; margin-top: 6px; opacity: 0.75;
+    }
+    .historia-firma-col {
+      display: flex; justify-content: flex-start;
+      margin-top: 36px;
+    }
+    .chef-firma {
+      display: block;
+      width: clamp(120px, 14vw, 180px); height: auto;
+      object-fit: contain; opacity: 0.80;
+      filter: brightness(0.15) contrast(1.2);
+    }
+
+    .marca-section { padding: 80px 56px; }
+    .marca-inner { max-width: 960px; margin: 0 auto; }
+    .marca-header { display: flex; align-items: flex-start; gap: 48px; margin-bottom: 48px; }
+    .marca-logo-wrap { flex-shrink: 0; }
+    .marca-logo-wrap img { width: 110px; height: 110px; object-fit: contain; display: block; opacity: 0.88; filter: drop-shadow(0 2px 12px rgba(0,0,0,0.10)); }
+    .marca-title-block .label { margin-bottom: 8px; }
+    .marca-title-block h2 { font-size: clamp(1.9rem, 3.5vw, 2.8rem); margin-bottom: 10px; line-height: 1.08; }
+    .marca-sub { font-family: var(--brilon); font-style: italic; font-size: 1.05rem; color: var(--dorado); display: block; }
+    .marca-body p { font-size: 0.97rem; line-height: 1.95; color: var(--gris-txt); margin-bottom: 18px; text-align: justify; hyphens: auto; }
+    .marca-body p:last-child { margin-bottom: 0; }
+    .marca-servicios { margin-top: 44px; padding-top: 32px; }
+    .marca-servicios .label { margin-bottom: 24px; }
+    .marca-servicios-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 12px 40px; }
+    .marca-servicios-item {
+      display: flex; align-items: baseline; gap: 12px;
+      font-family: var(--body); font-size: 0.91rem; color: var(--gris-txt); line-height: 1.55;
+    }
+    .marca-servicios-item::before { content: '—'; color: var(--dorado); opacity: 0.65; flex-shrink: 0; font-size: 0.70rem; }
+
+    .nosotros-ecosystem { padding: 80px 56px; text-align: center; background: var(--crema); }
+    .nosotros-ecosystem .label { display: flex; justify-content: center; margin-bottom: 48px; }
+    .ecosystem-logos { display: flex; align-items: center; justify-content: center; gap: 0; flex-wrap: wrap; }
+    .ecosystem-logo-item { display: flex; flex-direction: column; align-items: center; gap: 14px; padding: 0 52px; text-decoration: none; transition: transform 0.28s ease; }
+    .ecosystem-logo-item:hover { transform: translateY(-6px); }
+    .ecosystem-logo-item img { height: 108px; width: auto; object-fit: contain; opacity: 0.88; filter: drop-shadow(0 4px 14px rgba(0,0,0,0.09)); transition: opacity 0.22s, filter 0.22s; }
+    .ecosystem-logo-item:hover img { opacity: 1; filter: drop-shadow(0 6px 20px rgba(196,154,42,0.20)); }
+    .ecosystem-logo-name { font-family: var(--body); font-size: 0.60rem; font-weight: 600; letter-spacing: 2px; text-transform: uppercase; color: var(--gris-sua); text-align: center; }
+
+    .nosotros-cta { padding: 96px 56px; text-align: center; background: var(--carbon); }
+    .nosotros-cta .brilon { font-size: clamp(1.25rem, 2.5vw, 1.75rem); display: block; margin-bottom: 48px; color: rgba(196,154,42,0.88); max-width: 600px; margin-left: auto; margin-right: auto; }
+
+    @media (max-width: 900px) {
+      .chef-nosotros-inner { grid-template-columns: 1fr; gap: 48px; }
+      .chef-nosotros-foto { position: static; max-width: 400px; order: -1; }
+      .marca-header { flex-direction: column; gap: 24px; }
+      .marca-servicios-grid { grid-template-columns: 1fr; }
+      .nosotros-hero, .marca-section, .chef-nosotros,
+      .nosotros-intro, .nosotros-cta, .nosotros-ecosystem { padding-left: 32px; padding-right: 32px; }
+    }
+    @media (max-width: 600px) {
+      .nosotros-hero { padding: 100px 22px 72px; }
+      .nosotros-hero h1 { font-size: clamp(2.2rem, 9vw, 3.2rem); }
+      .marca-section { padding: 60px 22px; }
+      .chef-nosotros { padding: 60px 22px; }
+      .nosotros-cta { padding: 72px 22px; }
+      .nosotros-intro { padding: 60px 22px; }
+      .nosotros-ecosystem { padding: 60px 22px; }
+      .ecosystem-logo-item { padding: 0 20px; }
+      .ecosystem-logo-item img { height: 80px; }
+      .chef-nosotros-stats { gap: 24px; flex-wrap: wrap; }
+    }
+  </style>
+</head>
+<body>
+
+<header id="site-header">
+  <div class="header-top-row">
+    <a href="../Index.html" class="header-brand-link" aria-label="Les Clefs Food Design — Inicio">
+      <img src="../Portafolio/Titulo.png" alt="Les Clefs Food Design" class="header-main-logo">
+    </a>
+    <span class="header-brand-divider" aria-hidden="true"></span>
+    <div class="header-sublogos">
+      <a href="#meyta" class="header-sublogo-item" aria-label="MEYTA Spirits">
+        <img src="/FotosDecoraciones/LOGO MEYTA 2026-01.png" alt="MEYTA Spirits" class="header-sublogo-img">
+        <span class="header-sublogo-name">MEYTA Spirits</span>
+      </a>
+      <span class="header-sub-sep" aria-hidden="true"></span>
+      <a href="#roggen" class="header-sublogo-item" aria-label="Roggen">
+        <img src="/FotosDecoraciones/LOGOROGGENREDES.png" alt="Roggen" class="header-sublogo-img">
+        <span class="header-sublogo-name">Roggen</span>
+      </a>
+    </div>
+  </div>
+  <div class="header-nav-row">
+    <nav class="nav-desktop" aria-label="Menú principal">
+      <a href="../Index.html">Inicio</a>
+      <a href="../Apartados/Servicios.html">Servicios</a>
+      <a href="../Index.html#especialidades">Especialidades</a>
+      <a href="../Apartados/Portafolio.html">Portafolio</a>
+      <a href="../Index.html#experiencias">Experiencias</a>
+      <a href="../Index.html#academia">Academia</a>
+      <a href="../Index.html#obsequios">Obsequios</a>
+      <a href="../Index.html#cachivaches">Cachivaches</a>
+      <a href="../Index.html#viajes">Viajes</a>
+      <a href="../Apartados/NosotrosHistoria.html">Sobre el Chef</a>
+      <a href="../Index.html#contacto-sec">Contacto</a>
+    </nav>
+  </div>
+</header>
+
+<button class="menu-toggle" id="menuToggle" aria-label="Abrir menú" aria-expanded="false">
+  <span></span><span></span><span></span>
+</button>
+<div class="menu-overlay" id="menuOverlay"></div>
+<nav class="nav-panel" id="navPanel" aria-label="Menú móvil">
+  <span class="nav-panel-brand">Les Clefs Food Design</span>
+  <ul>
+    <li><a href="../Index.html"                       data-num="01">Inicio</a></li>
+    <li><a href="../Apartados/Servicios.html"         data-num="02">Servicios</a></li>
+    <li><a href="../Index.html#especialidades"        data-num="03">Especialidades</a></li>
+    <li><a href="../Apartados/Portafolio.html"        data-num="04">Portafolio</a></li>
+    <li><a href="../Index.html#experiencias"          data-num="05">Experiencias</a></li>
+    <li><a href="../Index.html#academia"              data-num="06">Academia</a></li>
+    <li><a href="../Index.html#obsequios"             data-num="07">Obsequios</a></li>
+    <li><a href="../Index.html#cachivaches"           data-num="08">Cachivaches</a></li>
+    <li><a href="../Index.html#viajes"                data-num="09">Viajes</a></li>
+    <li><a href="../Apartados/NosotrosHistoria.html"  data-num="10">Sobre el Chef</a></li>
+    <li><a href="../Index.html#contacto-sec"          data-num="11">Contacto</a></li>
+  </ul>
+</nav>
+
+<a href="https://wa.me/573000000000?text=Hola%2C%20me%20interesa%20conocer%20m%C3%A1s%20sobre%20Les%20Clefs%20Food%20Design"
+   class="wa-float" target="_blank" rel="noopener" aria-label="Escríbenos por WhatsApp">
+  <svg viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg">
+    <path d="M16 0C7.164 0 0 7.163 0 16c0 2.824.736 5.476 2.024 7.779L0 32l8.489-2.004A15.944 15.944 0 0016 32c8.836 0 16-7.163 16-16S24.836 0 16 0zm8.293 22.293c-.344.968-1.698 1.773-2.803 2.007-.747.158-1.722.284-5.003-1.074-4.2-1.716-6.903-5.973-7.113-6.248-.2-.275-1.69-2.248-1.69-4.29 0-2.04 1.075-3.034 1.455-3.448a1.525 1.525 0 011.09-.516c.138 0 .262.007.374.013.337.014.506.033.727.564.275.665.944 2.303 1.025 2.473.083.168.166.397.05.672-.109.281-.206.406-.375.607-.168.2-.327.354-.495.567-.153.188-.326.39-.133.727.193.332.86 1.416 1.843 2.293 1.268 1.13 2.34 1.48 2.668 1.636.328.157.52.131.713-.079.2-.207.85-.99 1.077-1.33.22-.336.44-.281.742-.168.306.11 1.942.913 2.274 1.08.33.166.55.25.63.39.08.138.08.8-.264 1.773z"/>
+  </svg>
+</a>
+
+<main>
+
+  <section class="nosotros-hero" aria-labelledby="nosotros-h1">
+    <span class="label">Nuestra Esencia</span>
+    <h1 id="nosotros-h1">Les Clefs Food Design<em>Diseño y Soluciones Gastronómicas</em></h1>
+    <em class="nosotros-hero-quote">
+      "La preparación de alimentos es un lenguaje universal que celebra el sabor y la calidad. En Les Clefs Food Design, diseñamos cada detalle en armonía con las necesidades y deseos de nuestros clientes."
+    </em>
+  </section>
+
+  <div class="nosotros-intro">
+    <span class="label">Nuestras Marcas</span>
+    <p>Tres marcas, una misma filosofía: elevar la gastronomía a experiencia de vida. Cada una con identidad propia, juntas forman un ecosistema completo de diseño culinario de alto nivel.</p>
+  </div>
+
+  <section class="chef-nosotros" aria-labelledby="chef-nos-h2">
+    <div class="chef-nosotros-inner">
+      <div class="chef-nosotros-bio">
+        <span class="label">El Artífice</span>
+        <h2 id="chef-nos-h2">Juan Antonio Gómez</h2>
+        <span class="chef-nosotros-sub">Chef Diseñador Culinario</span>
+
+        <p>Con una trayectoria de <strong>18 años</strong>, el Chef Juan Antonio Gómez aporta una vasta experiencia en diseño culinario y gestión gastronómica internacional. Su labor ha trascendido fronteras, incluyendo colaboraciones destacadas con embajadas, como la de Colombia en India, donde ha promovido la riqueza de la gastronomía colombiana al mundo.</p>
+        <p>Su experticia garantiza un enfoque innovador y de alta calidad en cada proyecto, contando siempre con un amplio equipo de profesionales especializados en cocina de autor, pastelería fina, mixología, fotografía gastronómica y estrategia de marca.</p>
+
+        <!-- HISTORIA DROPDOWN — ocupa el ancho completo del bio -->
+        <details class="historia-details">
+          <summary class="historia-summary">
+            <span class="historia-summary-text">Nuestra Historia</span>
+            <span class="historia-summary-icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <polyline points="6 9 12 15 18 9"/>
+              </svg>
+            </span>
+          </summary>
+          <div class="historia-expandida">
+            <div class="historia-content-grid">
+              <div class="historia-texto">
+                <p>Les Clefs Food Design nació de una visión clara: que la gastronomía es mucho más que alimentación. Es diseño, narrativa, emoción y experiencia de vida. Fundada por el Chef Juan Antonio Gómez en Bogotá, la empresa surgió como respuesta a una necesidad del mercado colombiano: contar con una propuesta de valor culinaria integral, que combinara la excelencia técnica con una perspectiva estética y estratégica de vanguardia.</p>
+                <p>Desde sus primeros pasos, Les Clefs se destacó por su capacidad de crear eventos únicos e irrepetibles. Bodas, cenas de gala, lanzamientos de marca, cenas diplomáticas y experiencias privadas de alto nivel han sido el lienzo donde el Chef ha plasmado su arte. Cada proyecto nace de una escucha profunda al cliente, y se materializa con rigor técnico, creatividad desbordante y una atención obsesiva por el detalle.</p>
+                <p>El viaje internacional del Chef —con presencia en más de doce países— ha enriquecido de manera incomparable la identidad de la marca. Tradiciones culinarias de Asia, Europa, América Latina y Medio Oriente confluyen en una propuesta gastronómica que habla el idioma universal del sabor, pero con acento propio. Esta mirada global es precisamente lo que diferencia a Les Clefs: la capacidad de crear propuestas con profundidad cultural y ejecución impecable.</p>
+                <p>Con el tiempo, el ecosistema de marcas creció de manera natural. MEYTA Spirits emergió como el brazo líquido de la propuesta —destilados y coctelería de autor con un alma propia—, mientras que Roggen abrió un espacio especializado en alta pastelería, harinas del mundo y especias ancestrales. Cada marca tiene personalidad propia, pero comparte el mismo ADN: calidad sin concesiones, identidad visual sólida y una experiencia que trasciende lo ordinario.</p>
+                <p>Hoy, Les Clefs Food Design es un referente gastronómico en Colombia y un embajador del buen gusto en el ámbito internacional. El camino apenas comienza, y cada evento es una nueva oportunidad de demostrar que la cocina, cuando se concibe como arte, tiene el poder de transformar momentos en memorias imborrables.</p>
+              </div>
+              <div class="historia-firma-col">
+                <img src="../Portafolio/Firma.png" class="chef-firma" alt="Firma Chef Juan Antonio Gómez" loading="lazy">
+              </div>
+            </div>
+          </div>
+        </details>
+
+        <div class="chef-nosotros-stats chef-stats" role="list">
+          <div class="chef-stat" role="listitem">
+            <span class="stat-num">18</span>
+            <span class="stat-label">Años de experiencia</span>
+          </div>
+          <div class="chef-stat" role="listitem">
+            <span class="stat-num">+12</span>
+            <span class="stat-label">Países recorridos</span>
+          </div>
+          <div class="chef-stat" role="listitem">
+            <span class="stat-num">+500</span>
+            <span class="stat-label">Eventos realizados</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="chef-nosotros-foto">
+        <img src="../Portafolio/FondoChef.jpg" alt="Chef Juan Antonio Gómez" loading="lazy">
+      </div>
+    </div>
+  </section>
+
+  <!-- MARCA: MEYTA SPIRITS -->
+  <section class="marca-section" id="meyta" aria-labelledby="meyta-h2">
+    <div class="marca-inner">
+      <div class="marca-header">
+        <div class="marca-logo-wrap">
+          <img src="/FotosDecoraciones/LOGO MEYTA 2026-01.png" alt="MEYTA SPIRITS" loading="lazy">
+        </div>
+        <div class="marca-title-block">
+          <span class="label">Destilados Premium</span>
+          <h2 id="meyta-h2">MEYTA SPIRITS</h2>
+          <span class="marca-sub">Un viaje sensorial por la Ruta de la Seda</span>
+        </div>
+      </div>
+      <div class="marca-body">
+        <p>Un viaje sensorial inspirado en la Ruta de la Seda, donde las especias, las piedras preciosas y las tradiciones ancestrales se transforman en elixires de carácter único.</p>
+        <p>Nuestros destilados premium fusionan tradición, innovación y narrativa sensorial para crear experiencias memorables alrededor del mundo líquido. Nuestro portafolio, basado en vodka de centeno y una cuidada selección de especias y botánicos, permite crear experiencias diferenciadoras, sofisticadas y altamente sensoriales.</p>
+        <p>MEYTA SPIRITS se posiciona como <strong>aliado estratégico</strong> para marcas, empresas y clientes que buscan elevar el estándar de sus eventos a través de experiencias líquidas únicas.</p>
+      </div>
+      <div class="marca-servicios">
+        <span class="label">Soluciones Integrales</span>
+        <div class="marca-servicios-grid">
+          <div class="marca-servicios-item">Servicio de bar profesional</div>
+          <div class="marca-servicios-item">Mixología de autor y coctelería con y sin alcohol</div>
+          <div class="marca-servicios-item">Experiencias de cata guiada y maridajes</div>
+          <div class="marca-servicios-item">Catering líquido para eventos sociales y corporativos</div>
+          <div class="marca-servicios-item">Diseño y ejecución de celebraciones privadas</div>
+          <div class="marca-servicios-item">Activaciones de marca y eventos empresariales</div>
+          <div class="marca-servicios-item">Talleres y experiencias formativas en bebidas</div>
+          <div class="marca-servicios-item">Desarrollo y representación de embajadores de marca</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- MARCA: ROGGEN -->
+  <section class="marca-section" id="roggen" style="background:var(--crema-2);" aria-labelledby="roggen-h2">
+    <div class="marca-inner">
+      <div class="marca-header">
+        <div class="marca-logo-wrap">
+          <img src="/FotosDecoraciones/LOGOROGGENREDES.png" alt="Roggen Harinas y Especias del Mundo" loading="lazy">
+        </div>
+        <div class="marca-title-block">
+          <span class="label">Alta Pastelería</span>
+          <h2 id="roggen-h2">Roggen</h2>
+          <span class="marca-sub">Harinas y Especias del Mundo</span>
+        </div>
+      </div>
+      <div class="marca-body">
+        <p>Una casa creativa donde las harinas del mundo, las especias ancestrales, las esencias y los dulces se convierten en lenguaje, textura y emoción.</p>
+        <p>Un laboratorio sensorial que transforma ingredientes en arte comestible, elevando la pastelería y la repostería a una experiencia de diseño, precisión y narrativa. Creamos piezas únicas de alta pastelería, productos y subproductos que nacen del detalle, la técnica y la inspiración global.</p>
+        <p>Cada elaboración es un diálogo entre culturas, tiempos y sabores. Trabajamos desde la identidad del cliente para crear propuestas únicas, cuidando cada detalle: <strong>sabor, estética, técnica y experiencia</strong>.</p>
+      </div>
+      <div class="marca-servicios">
+        <span class="label">Soluciones Integrales</span>
+        <div class="marca-servicios-grid">
+          <div class="marca-servicios-item">Diseño y producción de alta pastelería y repostería</div>
+          <div class="marca-servicios-item">Desarrollo de productos y subproductos (líneas dulces y saladas)</div>
+          <div class="marca-servicios-item">Catering dulce y experiencias gastronómicas</div>
+          <div class="marca-servicios-item">Mesas de postres y conceptos temáticos</div>
+          <div class="marca-servicios-item">Talleres y clases (básico, intermedio y avanzado)</div>
+          <div class="marca-servicios-item">Experiencias sensoriales y formativas</div>
+          <div class="marca-servicios-item">Eventos sociales y corporativos</div>
+          <div class="marca-servicios-item">Personalización total según concepto y presupuesto</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ECOSISTEMA DE MARCAS -->
+  <section class="nosotros-ecosystem" aria-label="Nuestro ecosistema de marcas">
+    <span class="label">Nuestro Ecosistema</span>
+    <div class="ecosystem-logos" role="list">
+      <a href="../Index.html" class="ecosystem-logo-item" role="listitem" aria-label="Les Clefs Food Design">
+        <img src="/FotosDecoraciones/FotoBoton.png" alt="Les Clefs Food Design" loading="lazy">
+        <span class="ecosystem-logo-name">Les Clefs<br>Food Design</span>
+      </a>
+      <a href="#meyta" class="ecosystem-logo-item" role="listitem" aria-label="MEYTA Spirits">
+        <img src="/FotosDecoraciones/LOGO MEYTA 2026-01.png" alt="MEYTA SPIRITS" loading="lazy">
+        <span class="ecosystem-logo-name">MEYTA<br>Spirits</span>
+      </a>
+      <a href="#roggen" class="ecosystem-logo-item" role="listitem" aria-label="Roggen Harinas y Especias">
+        <img src="/FotosDecoraciones/LOGOROGGENREDES.png" alt="Roggen" loading="lazy">
+        <span class="ecosystem-logo-name">Roggen<br>Harinas &amp; Especias</span>
+      </a>
+    </div>
+  </section>
+
+  <!-- CTA FINAL -->
+  <section class="nosotros-cta" aria-label="Contacto">
+    <em class="brilon">"Ciudadanos del Mundo, embajadores del sabor"</em>
+    <div class="cta-wrap" style="justify-content:center;">
+      <a href="../Index.html#contacto-sec" class="btn-principal btn-dorado">Iniciar un Proyecto</a>
+      <a href="../Index.html" class="btn-ghost btn-ghost--light">← Volver al Inicio</a>
+    </div>
+  </section>
+
+</main>
+
+<footer>
+  <p>&copy; 2026 <span>Les Clefs Food Design</span> &nbsp;·&nbsp; Chef Juan Antonio Gómez &nbsp;·&nbsp; Bogotá, Colombia</p>
+</footer>
+<script src="../Estilos/script.js"></script>
+</body>
+</html>

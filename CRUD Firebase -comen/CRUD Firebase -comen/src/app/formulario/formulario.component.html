@@ -1,0 +1,31 @@
+<h5 class="text-success mt-3 text-center">Detalle Producto</h5>
+
+<form class="my-4 w-50 mx-auto"
+    #f="ngForm" (submit)="f.form.valid && guardarProducto($event)">
+    <div class="d-flex justify-content-between align-items-center">
+        <input type="text" id="descripcion" name="descripcion"
+        placeholder="Descripción Producto" class="form-control me-2 w-75"
+        autocomplete="off"
+        [(ngModel)]="descripcionInput"
+        required/>
+
+    <input type="number" id="precio" name="precio"
+        placeholder="Precio" class="form-control me-2 w-25"
+        [(ngModel)]="precioInput" 
+        required/>
+
+    </div>
+
+    <div class="d-flex justify-content-center mt-3">
+        <button type="submit" class="btn btn-primary">Guardar Producto</button>  
+        
+        @if(llaveProducto !== null){
+            <button type="button" class="btn btn-danger mx-3" (click)="eliminarProducto()">
+                Eliminar Producto
+            </button>
+        }
+
+        <button type="button" class="btn btn-warning mx-3" (click)="cancelar()">Cancelar</button>
+    </div>
+        
+</form>

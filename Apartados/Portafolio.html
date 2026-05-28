@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html lang="es-CO">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#1A1A1A">
+  <title>Portafolio — Les Clefs Food Design</title>
+  <meta name="description" content="Portafolio de eventos, catering, coctelería y consultoría de Les Clefs Food Design — Chef Juan Antonio Gómez, Bogotá.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,300;0,400;0,500;0,600;0,700&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../Estilos/style.css">
+</head>
+<body>
+
+<!-- ══ HEADER ══════════════════════════════════════════════════════════ -->
+<header id="site-header">
+  <div class="header-top-row">
+    <a href="../Index.html" class="header-brand-link" aria-label="Les Clefs Food Design — Inicio">
+      <img src="../Portafolio/Titulo.png" alt="Les Clefs Food Design" class="header-main-logo">
+    </a>
+    <span class="header-brand-divider" aria-hidden="true"></span>
+    <div class="header-sublogos">
+      <a href="../Apartados/NosotrosHistoria.html#meyta" class="header-sublogo-item" aria-label="MEYTA Spirits">
+        <img src="/FotosDecoraciones/LOGO MEYTA 2026-01.png" alt="MEYTA Spirits" class="header-sublogo-img">
+        <span class="header-sublogo-name">MEYTA Spirits</span>
+      </a>
+      <span class="header-sub-sep" aria-hidden="true"></span>
+      <a href="../Apartados/NosotrosHistoria.html#roggen" class="header-sublogo-item" aria-label="Roggen">
+        <img src="/FotosDecoraciones/LOGOROGGENREDES.png" alt="Roggen" class="header-sublogo-img">
+        <span class="header-sublogo-name">Roggen</span>
+      </a>
+    </div>
+  </div>
+  <div class="header-nav-row">
+    <nav class="nav-desktop" aria-label="Menú principal">
+      <a href="../Index.html">Inicio</a>
+      <a href="../Apartados/Servicios.html">Servicios</a>
+      <a href="../Index.html#especialidades">Especialidades</a>
+      <a href="../Apartados/Portafolio.html">Portafolio</a>
+      <a href="../Index.html#experiencias">Experiencias</a>
+      <a href="../Index.html#academia">Academia</a>
+      <a href="../Index.html#obsequios">Obsequios</a>
+      <a href="../Index.html#cachivaches">Cachivaches</a>
+      <a href="../Index.html#viajes">Viajes</a>
+      <a href="../Apartados/NosotrosHistoria.html">Sobre el Chef</a>
+      <a href="../Index.html#contacto-sec">Contacto</a>
+    </nav>
+  </div>
+</header>
+
+<button class="menu-toggle" id="menuToggle" aria-label="Abrir menú" aria-expanded="false">
+  <span></span><span></span><span></span>
+</button>
+<div class="menu-overlay" id="menuOverlay"></div>
+<nav class="nav-panel" id="navPanel" aria-label="Menú móvil">
+  <span class="nav-panel-brand">Les Clefs Food Design</span>
+  <ul>
+    <li><a href="../Index.html"                       data-num="01">Inicio</a></li>
+    <li><a href="../Apartados/Servicios.html"         data-num="02">Servicios</a></li>
+    <li><a href="../Index.html#especialidades"        data-num="03">Especialidades</a></li>
+    <li><a href="../Apartados/Portafolio.html"        data-num="04">Portafolio</a></li>
+    <li><a href="../Index.html#experiencias"          data-num="05">Experiencias</a></li>
+    <li><a href="../Index.html#academia"              data-num="06">Academia</a></li>
+    <li><a href="../Index.html#obsequios"             data-num="07">Obsequios</a></li>
+    <li><a href="../Index.html#cachivaches"           data-num="08">Cachivaches</a></li>
+    <li><a href="../Index.html#viajes"                data-num="09">Viajes</a></li>
+    <li><a href="../Apartados/NosotrosHistoria.html"  data-num="10">Sobre el Chef</a></li>
+    <li><a href="../Index.html#contacto-sec"          data-num="11">Contacto</a></li>
+  </ul>
+</nav>
+
+<!-- ══ LIGHTBOX ════════════════════════════════════════════════════════ -->
+<div class="lightbox" id="portfolioLightbox" role="dialog" aria-modal="true" aria-label="Detalle de proyecto">
+  <div class="lb-inner">
+    <button class="lb-close" id="lbClose" aria-label="Cerrar">&#x2715;</button>
+    <img class="lb-img" id="lbImg" src="" alt="">
+    <div class="lb-title" id="lbTitle"></div>
+    <p class="lb-text" id="lbText"></p>
+  </div>
+</div>
+
+<!-- ══ WHATSAPP ════════════════════════════════════════════════════════ -->
+<a href="https://wa.me/573000000000?text=Hola%2C%20me%20interesa%20conocer%20m%C3%A1s%20sobre%20Les%20Clefs%20Food%20Design"
+   class="wa-float" target="_blank" rel="noopener" aria-label="Escríbenos por WhatsApp">
+  <svg viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg">
+    <path d="M16 0C7.164 0 0 7.163 0 16c0 2.824.736 5.476 2.024 7.779L0 32l8.489-2.004A15.944 15.944 0 0016 32c8.836 0 16-7.163 16-16S24.836 0 16 0zm8.293 22.293c-.344.968-1.698 1.773-2.803 2.007-.747.158-1.722.284-5.003-1.074-4.2-1.716-6.903-5.973-7.113-6.248-.2-.275-1.69-2.248-1.69-4.29 0-2.04 1.075-3.034 1.455-3.448a1.525 1.525 0 011.09-.516c.138 0 .262.007.374.013.337.014.506.033.727.564.275.665.944 2.303 1.025 2.473.083.168.166.397.05.672-.109.281-.206.406-.375.607-.168.2-.327.354-.495.567-.153.188-.326.39-.133.727.193.332.86 1.416 1.843 2.293 1.268 1.13 2.34 1.48 2.668 1.636.328.157.52.131.713-.079.2-.207.85-.99 1.077-1.33.22-.336.44-.281.742-.168.306.11 1.942.913 2.274 1.08.33.166.55.25.63.39.08.138.08.8-.264 1.773z"/>
+  </svg>
+</a>
+
+<main>
+  <!-- ENCABEZADO -->
+  <section class="seccion" style="text-align:center; padding-top:calc(var(--hh) + 48px); padding-bottom:56px;">
+    <span class="label">Nuestras Creaciones</span>
+    <h1>Portafolio</h1>
+    <em class="brilon" style="font-size:1.35rem; display:block; margin-top:14px;">"Cada plato, una historia. Cada evento, un recuerdo."</em>
+  </section>
+
+  <!-- EVENTOS Y CATERING -->
+  <section class="seccion" aria-labelledby="eventos-h2">
+    <span class="label">Celebraciones exclusivas</span>
+    <h2 id="eventos-h2">Eventos y Catering</h2>
+    <p style="color:var(--gris-sua); font-size:0.87rem; margin:6px 0 0;">Haz clic para ver los detalles</p>
+    <div class="portfolio-grid">
+      <div class="portfolio-item"
+           data-title="Cena de Gala Corporativa"
+           data-text="Evento empresarial premium para 200 invitados con menú de autor de 6 tiempos. Coordinación completa, vajilla de lujo, maridaje de vinos y servicio de protocolo internacional.">
+        <div class="portfolio-circle"><img src="../Portafolio/4.jpg" alt="Cena de Gala Corporativa" loading="lazy"></div>
+        <div class="portfolio-caption"><h3>Cena de Gala Corporativa</h3><p>Menú de autor de 6 tiempos para 200 invitados.</p></div>
+      </div>
+      <div class="portfolio-item"
+           data-title="Boda Premium"
+           data-text="Catering personalizado, pastelería de autor y decoración premium para 350 invitados. Menú degustación de 8 tiempos con maridaje de vinos seleccionados y mesa de postres Roggen.">
+        <div class="portfolio-circle"><img src="../Portafolio/3.jpg" alt="Boda Premium" loading="lazy"></div>
+        <div class="portfolio-caption"><h3>Boda Premium</h3><p>Catering personalizado y pastelería de autor para 350 invitados.</p></div>
+      </div>
+      <div class="portfolio-item"
+           data-title="Cóctel Diplomático"
+           data-text="Recepción oficial en la Embajada de Colombia en India. Gastronomía colombiana presentada al mundo, con ingredientes de temporada y presentaciones de alta cocina de autor.">
+        <div class="portfolio-circle"><img src="../Portafolio/1.png" alt="Cóctel Diplomático" loading="lazy"></div>
+        <div class="portfolio-caption"><h3>Cóctel Diplomático</h3><p>Embajada de Colombia en India. Gastronomía colombiana al mundo.</p></div>
+      </div>
+      <div class="portfolio-item"
+           data-title="Celebración Privada"
+           data-text="Evento íntimo de aniversario con menú degustación de 7 tiempos y maridaje de vinos y destilados MEYTA Spirits. Una experiencia completamente personalizada e irrepetible.">
+        <div class="portfolio-circle"><img src="../Portafolio/2.png" alt="Celebración Privada" loading="lazy"></div>
+        <div class="portfolio-caption"><h3>Celebración Privada</h3><p>Aniversario íntimo con degustación de 7 tiempos y maridaje.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- COCTELERÍA DE AUTOR -->
+  <section class="seccion" aria-labelledby="cocteles-h2">
+    <span class="label">Arte líquido</span>
+    <h2 id="cocteles-h2">Coctelería de Autor</h2>
+    <p style="color:var(--gris-sua); font-size:0.87rem; margin:6px 0 0;">Haz clic para ver los detalles</p>
+    <div class="portfolio-grid">
+      <div class="portfolio-item"
+           data-title="Laboratorio de Mixología"
+           data-text="Taller interactivo itinerante con cócteles de autor e ingredientes botánicos colombianos MEYTA Spirits. Experiencia formativa y sensorial para grupos privados y corporativos.">
+        <div class="portfolio-circle"><img src="../Portafolio/2.png" alt="Laboratorio de Mixología" loading="lazy"></div>
+        <div class="portfolio-caption"><h3>Laboratorio de Mixología</h3><p>Taller interactivo con botánicos colombianos MEYTA Spirits.</p></div>
+      </div>
+      <div class="portfolio-item"
+           data-title="Barra Temática"
+           data-text="Concepto de barra personalizada con cócteles signature exclusivos para evento corporativo de 150 personas. Diseño visual de la barra, uniformes y experiencia de servicio premium.">
+        <div class="portfolio-circle"><img src="../Portafolio/4.jpg" alt="Barra Temática" loading="lazy"></div>
+        <div class="portfolio-caption"><h3>Barra Temática</h3><p>Barra signature exclusiva para evento corporativo premium.</p></div>
+      </div>
+      <div class="portfolio-item"
+           data-title="Masterclass Coctelería"
+           data-text="Sesión magistral de mixología de 3 horas para grupo selecto de 15 personas. Incluye degustación de 6 cócteles de autor, maridaje con aperitivos y diploma de competencias.">
+        <div class="portfolio-circle"><img src="../Portafolio/1.png" alt="Masterclass Coctelería" loading="lazy"></div>
+        <div class="portfolio-caption"><h3>Masterclass Coctelería</h3><p>Sesión magistral con diploma de competencias incluido.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CONSULTORÍA Y MARCA -->
+  <section class="seccion" aria-labelledby="consultoria-h2">
+    <span class="label">Estrategia gastronómica</span>
+    <h2 id="consultoria-h2">Consultoría y Marca</h2>
+    <p style="color:var(--gris-sua); font-size:0.87rem; margin:6px 0 0;">Haz clic para ver los detalles</p>
+    <div class="portfolio-grid">
+      <div class="portfolio-item"
+           data-title="Consultoría Integral"
+           data-text="Rediseño completo de concepto gastronómico, carta, estructura de costos y estrategia de marca para restaurante en Bogotá. Acompañamiento de 3 meses con resultados medibles.">
+        <div class="portfolio-circle"><img src="../Portafolio/consultoria-negocio.jpg" alt="Consultoría" loading="lazy"></div>
+        <div class="portfolio-caption"><h3>Consultoría Integral</h3><p>Rediseño de concepto, carta, costos y estrategia de marca.</p></div>
+      </div>
+      <div class="portfolio-item"
+           data-title="Fotografía Gastronómica"
+           data-text="Sesión de fotografía gastronómica profesional para carta y redes sociales. Contenido premium que posiciona la marca culinaria y eleva la percepción de valor del restaurante.">
+        <div class="portfolio-circle"><img src="../Portafolio/fotografia-gastronomica.jpg" alt="Fotografía Gastronómica" loading="lazy"></div>
+        <div class="portfolio-caption"><h3>Fotografía Gastronómica</h3><p>Contenido premium para carta, redes y posicionamiento de marca.</p></div>
+      </div>
+      <div class="portfolio-item"
+           data-title="Lanzamiento de Marca"
+           data-text="Evento de lanzamiento culinario con activaciones sensoriales e inmersivas para nueva propuesta gastronómica. Menú de autor, barra temática MEYTA y experiencia de mesa completa.">
+        <div class="portfolio-circle"><img src="../Portafolio/3.jpg" alt="Lanzamiento de Marca" loading="lazy"></div>
+        <div class="portfolio-caption"><h3>Lanzamiento de Marca</h3><p>Evento inmersivo con activaciones sensoriales y menú de autor.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ACADEMIA Y FORMACIÓN -->
+  <section class="seccion" aria-labelledby="academia-h2">
+    <span class="label">Transmitiendo el arte</span>
+    <h2 id="academia-h2">Academia y Formación</h2>
+    <p style="color:var(--gris-sua); font-size:0.87rem; margin:6px 0 0;">Haz clic para ver los detalles</p>
+    <div class="portfolio-grid">
+      <div class="portfolio-item"
+           data-title="Taller Culinario"
+           data-text="Clase magistral de alta cocina para grupo de 20 personas con técnicas profesionales: emplatado, texturas, salsas de autor y presentación editorial. Degustación y recetario incluido.">
+        <div class="portfolio-circle"><img src="../Portafolio/1.png" alt="Taller Culinario" loading="lazy"></div>
+        <div class="portfolio-caption"><h3>Taller Culinario</h3><p>Clase magistral con técnicas de alta cocina para 20 personas.</p></div>
+      </div>
+      <div class="portfolio-item"
+           data-title="Programa Academia"
+           data-text="Formación intensiva de 6 semanas en cocina de autor, pastelería fina Roggen y mixología MEYTA. Programa completo con prácticas, teoría y evaluación final con certificación.">
+        <div class="portfolio-circle"><img src="../Portafolio/2.png" alt="Programa Academia" loading="lazy"></div>
+        <div class="portfolio-caption"><h3>Programa Academia</h3><p>Formación intensiva de 6 semanas con certificación.</p></div>
+      </div>
+      <div class="portfolio-item"
+           data-title="Cocina Residencial"
+           data-text="Programa privado de inteligencia alimentaria y chef residencial en Bogotá. Auditoría de cocina, clases personalizadas y menús semanales adaptados al estilo de vida del cliente.">
+        <div class="portfolio-circle"><img src="../Portafolio/4.jpg" alt="Cocina Residencial" loading="lazy"></div>
+        <div class="portfolio-caption"><h3>Cocina Residencial</h3><p>Chef privado e inteligencia alimentaria personalizada en casa.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA FINAL -->
+  <section class="seccion" style="text-align:center; padding-top:48px; padding-bottom:80px;" aria-label="Contacto">
+    <em class="brilon" style="font-size:1.4rem; display:block; margin-bottom:36px;">"¿Listo para crear algo extraordinario juntos?"</em>
+    <div class="cta-wrap" style="justify-content:center;">
+      <a href="../Index.html#contacto-sec" class="btn-principal">Solicitar Cotización</a>
+      <a href="../Index.html" class="btn-ghost">← Volver al Inicio</a>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <p>&copy; 2026 <span>Les Clefs Food Design</span> &nbsp;·&nbsp; Chef Juan Antonio Gómez &nbsp;·&nbsp; Bogotá, Colombia</p>
+</footer>
+<script src="../Estilos/script.js"></script>
+</body>
+</html>
