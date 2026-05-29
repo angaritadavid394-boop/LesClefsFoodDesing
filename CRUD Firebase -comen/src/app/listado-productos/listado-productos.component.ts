@@ -50,6 +50,12 @@ export class ListadoProductosComponent {
     this.router.navigate(['agregar']);
   }
 
+  // Recibe la llave emitida por el hijo (app-producto) mediante @Output
+  // y decide la navegacion hacia el formulario de edicion.
+  onEditarProducto(llave: string){
+    this.router.navigate(['/editar', llave]);
+  }
+
   ngOnDestroy(): void {
     if(this.productosSubscripcion != null){
       this.productosSubscripcion.unsubscribe();

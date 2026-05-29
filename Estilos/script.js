@@ -192,16 +192,71 @@ document.querySelectorAll('.svc-header').forEach(hd => {
   });
 })();
 
-/* ══ FORMULARIO — envío por WhatsApp ══════════════════════════════════ */
-function handleFormSubmit(e) {
+/* ══ FORMULARIO — Guardar en Firebase + envío opcional por WhatsApp ══ */
+async function handleFormSubmit(e) {
   e.preventDefault();
-  const form    = e.target;
-  const nombre  = (form.nombre   && form.nombre.value.trim())   || '';
-  const email   = (form.email    && form.email.value.trim())    || '';
-  const tel     = (form.telefono && form.telefono.value.trim()) || '';
-  const servicio= (form.servicio && form.servicio.value)        || '';
-  const msg     = (form.mensaje  && form.mensaje.value.trim())  || '';
+  const form     = e.target;
+  const nombre   = (form.nombre   && form.nombre.value.trim())   || '';
+  const email    = (form.email    && form.email.value.trim())    || '';
+  const tel      = (form.telefono && form.telefono.value.trim()) || '';
+  const servicio = (form.servicio && form.servicio.value)        || '';
+  const msg      = (form.mensaje  && form.mensaje.value.trim())  || '';
+  const btn      = form.querySelector('button[type="submit"]');
+  const orig     = btn ? btn.innerHTML : '';
 
+  // Validación mínima
+  if (!nombre || !servicio) {
+    alert('Por favor completa al menos el nombre y el tipo de servicio.');
+    return;
+  }
+
+  // Estado: guardando…
+  if (btn) {
+    btn.disabled  = true;
+    btn.innerHTML = '⏳ Enviando reserva…';
+  }
+
+  // ══ 1) GUARDAR EN FIREBASE (Firestore) ══════════════════════════════
+  let guardadoOk = false;
+  if (typeof window.guardarReserva === 'function') {
+    try {
+      const res = await window.guardarReserva({
+        nombre:   nombre,
+        email:    email,
+        telefono: tel,
+        servicio: servicio,
+        mensaje:  msg
+      });
+      guardadoOk = !!(res && res.ok);
+      if (guardadoOk) {
+        console.log('Reserva guardada en Firebase:', res.id);
+      } else {
+        console.warn('No se pudo guardar la reserva en Firebase', res);
+      }
+    } catch (err) {
+      console.error('Error al guardar en Firebase:', err);
+    }
+  } else {
+    console.warn('Firebase no disponible (window.guardarReserva no existe).');
+  }
+
+  // Si falló el guardado, avisar y NO abrir WhatsApp.
+  if (!guardadoOk) {
+    if (btn) {
+      btn.innerHTML = '✕ No se pudo enviar la reserva';
+      setTimeout(() => { btn.innerHTML = orig; btn.disabled = false; }, 4000);
+    }
+    alert('No se pudo enviar la reserva. Verifica tu conexión e inténtalo de nuevo.');
+    return;
+  }
+
+  // ══ 2) CONFIRMAR AL USUARIO ════════════════════════════════════════
+  if (btn) {
+    btn.innerHTML = '✓ Reserva enviada';
+  }
+  form.reset();
+
+  // ══ 3) WHATSAPP OPCIONAL — el usuario decide si quiere enviar también
   const serviceMap = {
     catering:      'Catering & Eventos',
     cocteles:      'Coctelería de Autor',
@@ -213,7 +268,6 @@ function handleFormSubmit(e) {
     cachivaches:   'Cachivaches & Utensilios',
     otro:          'Otro'
   };
-
   const svcLabel = serviceMap[servicio] || servicio;
   const texto = [
     '🍽️ *Solicitud — Les Clefs Food Design*',
@@ -229,14 +283,13 @@ function handleFormSubmit(e) {
   const waNumber = '573000000000';
   const waUrl    = `https://wa.me/${waNumber}?text=${encodeURIComponent(texto)}`;
 
-  window.open(waUrl, '_blank', 'noopener,noreferrer');
+  if (confirm('Tu reserva fue registrada con éxito.\n\n¿Quieres además enviar el mensaje por WhatsApp al equipo del Chef?')) {
+    window.open(waUrl, '_blank', 'noopener,noreferrer');
+  }
 
-  const btn = form.querySelector('button[type="submit"]');
+  // Restaurar el botón
   if (btn) {
-    const orig = btn.innerHTML;
-    btn.innerHTML = '✓ Abriendo WhatsApp…';
-    btn.disabled  = true;
-    setTimeout(() => { btn.innerHTML = orig; btn.disabled = false; }, 3200);
+    setTimeout(() => { btn.innerHTML = orig; btn.disabled = false; }, 2500);
   }
 }
 

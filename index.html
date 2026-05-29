@@ -10,6 +10,66 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="Estilos/style.css">
+  <!-- ══ FIREBASE — Conexion y CRUD de reservas (Firestore) ══ -->
+  <script type="module">
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-app.js";
+    import {
+      getFirestore, collection, addDoc,
+      doc, updateDoc, deleteDoc, onSnapshot,
+      serverTimestamp, query, orderBy
+    } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore.js";
+
+    // REEMPLAZA con TU configuracion: Firebase -> Config del proyecto -> Tus apps (web)
+    const firebaseConfig = {
+      apiKey: "AIzaSyD4jjGNN-rx-W2bWNiE8IILpWJlWC-XQN4",
+      authDomain: "les-clefs-food.firebaseapp.com",
+      projectId: "les-clefs-food",
+      storageBucket: "les-clefs-food.firebasestorage.app",
+      messagingSenderId: "639753027794",
+      appId: "1:639753027794:web:08663a80d04b32a1f1ed0b"
+    };
+
+    const app = initializeApp(firebaseConfig);
+    const db  = getFirestore(app);
+    const reservasRef = collection(db, "reservas");
+
+    // ══ CREATE — Guardar reserva ══
+    window.guardarReserva = async function (datos) {
+      try {
+        const docRef = await addDoc(reservasRef, {
+          ...datos,
+          estado: "pendiente",
+          fecha: serverTimestamp()
+        });
+        console.log("Reserva guardada:", docRef.id);
+        return { ok: true, id: docRef.id };
+      } catch (e) {
+        console.error("Error al guardar:", e);
+        return { ok: false };
+      }
+    };
+
+    // ══ READ — Escuchar reservas en tiempo real ══
+    window.cargarReservas = function (callback) {
+      const q = query(reservasRef, orderBy("fecha", "desc"));
+      return onSnapshot(q, snapshot => {
+        const reservas = snapshot.docs.map(d => ({ id: d.id, ...d.data() }));
+        callback(reservas);
+      });
+    };
+
+    // ══ UPDATE — Cambiar estado ══
+    window.actualizarReserva = async function (id, datos) {
+      try { await updateDoc(doc(db, "reservas", id), datos); return { ok: true }; }
+      catch (e) { console.error("Error al actualizar:", e); return { ok: false }; }
+    };
+
+    // ══ DELETE — Eliminar reserva ══
+    window.eliminarReserva = async function (id) {
+      try { await deleteDoc(doc(db, "reservas", id)); return { ok: true }; }
+      catch (e) { console.error("Error al eliminar:", e); return { ok: false }; }
+    };
+  </script>
 </head>
 <body>
 
@@ -916,7 +976,7 @@
       </select>
       <textarea name="mensaje" placeholder="Cuéntenos sobre su proyecto, fecha estimada y número de invitados…"></textarea>
       <button type="submit" class="btn-principal btn-full">
-        Enviar por WhatsApp
+        Enviar reserva
         <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg>
       </button>
     </form>

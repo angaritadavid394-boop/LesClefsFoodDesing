@@ -1329,13 +1329,27 @@ p { font-family: var(--body); font-size: 0.93rem; line-height: 1.90; color: var(
 }
 .cform input::placeholder,
 .cform textarea::placeholder { color: rgba(253,250,245,0.28); }
+
+/* ══ SELECT — flecha dorada + placeholder gris ══ */
+.cform-select {
+  padding-right: 44px;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%23C49A2A' stroke-width='1.8' stroke-linecap='round' stroke-linejoin='round' fill='none'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 16px center;
+  cursor: pointer;
+}
+/* Cuando no ha seleccionado nada, el option[value=""] muestra gris */
+.cform-select:invalid,
+.cform-select.placeholder { color: rgba(253,250,245,0.28); }
 .cform-select option { background: var(--carbon-2); color: var(--crema); }
+.cform-select option[value=""][disabled] { color: rgba(253,250,245,0.28); }
+
 .cform input:focus,
 .cform textarea:focus,
 .cform-select:focus {
   outline: none;
   border-color: rgba(196,154,42,0.48);
-  background: rgba(255,255,255,0.07);
+  background-color: rgba(255,255,255,0.07);
 }
 .cform textarea { min-height: 138px; resize: vertical; }
 .btn-full { width: 100%; justify-content: center; }

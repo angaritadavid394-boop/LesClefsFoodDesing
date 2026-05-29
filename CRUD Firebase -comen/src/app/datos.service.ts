@@ -10,7 +10,10 @@ import { Producto } from './producto/producto.model'; // Importa la interfaz o m
 })
 export class DatosService {
   // URL base de la base de datos Firebase Realtime Database
-  url = 'https://tienda-online-cc406-default-rtdb.firebaseio.com/';
+  // ===== CAMBIA ESTA URL POR LA DE TU PROPIA REALTIME DATABASE =====
+  // La obtienes en: consola Firebase -> Realtime Database (arriba de la tabla).
+  // Formato: https://TU-PROYECTO-default-rtdb.firebaseio.com/
+  url = 'https://TU-PROYECTO-default-rtdb.firebaseio.com/';
 
   // Constructor que inyecta el servicio HttpClient para realizar las peticiones HTTP
   constructor(private httpClient: HttpClient){}
